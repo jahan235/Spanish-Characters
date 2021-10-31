@@ -1,0 +1,199 @@
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
+
+public class Main extends JFrame{
+
+    public static void main(String[] args) throws AWTException{
+        //Create strings formatted for clipboard;
+        StringSelection lowerAcuteA = new StringSelection("á");
+        StringSelection lowerAcuteE = new StringSelection("é");
+        StringSelection lowerAcuteI = new StringSelection("í");
+        StringSelection lowerAcuteO = new StringSelection("ó");
+        StringSelection lowerAcuteU = new StringSelection("ú");
+        StringSelection lowerTildeN = new StringSelection("ñ");
+        StringSelection upperAcuteA = new StringSelection("Á");
+        StringSelection upperAcuteE = new StringSelection("É");
+        StringSelection upperAcuteI = new StringSelection("Í");
+        StringSelection upperTildeN = new StringSelection("Ñ");
+        StringSelection upperAcuteO = new StringSelection("Ó");
+        StringSelection upperAcuteU = new StringSelection("Ú");
+        StringSelection invertedQuestionMark = new StringSelection("¿");
+        StringSelection invertedExclaimationMark = new StringSelection("¡");
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Robot robot = new Robot();
+        JFrame frame = new JFrame();
+		
+        //Create buttons
+        JButton capsButton = new JButton("CAPS");
+        JButton acuteAButton = new JButton("á");
+        JButton acuteEButton = new JButton("é");
+        JButton acuteIButton = new JButton("í");
+        JButton acuteOButton = new JButton("ó");
+        JButton acuteUButton = new JButton("ú");
+        JButton tildeNButton = new JButton("ñ");
+        JButton invertedExclaimationMarkButton = new JButton("¡");
+        JButton invertedQuestionMarkButton = new JButton("¿");
+        setup(frame);
+
+        capsButton.setBounds(0, 0, 100, 150);
+        frame.add(capsButton);
+        capsButton.setVisible(true);
+        capsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    acuteAButton.setText("Á");
+                    acuteEButton.setText("É");
+                    acuteIButton.setText("Í");
+                    tildeNButton.setText("Ñ");
+                    acuteOButton.setText("Ó");
+                    acuteUButton.setText("Ú");
+                }
+                else{
+                    acuteAButton.setText("á");
+                    acuteEButton.setText("é");
+                    acuteIButton.setText("í");
+                    tildeNButton.setText("ñ");
+                    acuteOButton.setText("ó");
+                    acuteUButton.setText("ú");
+                }
+            }
+        });
+
+        acuteAButton.setBounds(100, 0, 100, 75);
+        frame.add(acuteAButton);
+        acuteAButton.setVisible(true);
+        acuteAButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerAcuteA, robot);
+                }
+                else{
+                    type(clipboard, upperAcuteA, robot);
+                }
+            }
+        });
+
+        acuteEButton.setBounds(200, 0, 100, 75);
+        frame.add(acuteEButton);
+        acuteEButton.setVisible(true);
+        acuteEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerAcuteE, robot);
+                }
+                else{
+                    type(clipboard, upperAcuteE, robot);
+                }
+            }
+        });
+
+        acuteIButton.setBounds(300, 0, 100, 75);
+        frame.add(acuteIButton);
+        acuteIButton.setVisible(true);
+        acuteIButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerAcuteI, robot);
+                }
+                else{
+                    type(clipboard, upperAcuteI, robot);
+                }
+            }
+        });
+
+        tildeNButton.setBounds(100, 75, 100, 75);
+        frame.add(tildeNButton);
+        tildeNButton.setVisible(true);
+        tildeNButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerTildeN, robot);
+                }
+                else{
+                    type(clipboard, upperTildeN, robot);
+                }
+            }
+        });
+
+        acuteOButton.setBounds(200, 75, 100, 75);
+        frame.add(acuteOButton);
+        acuteOButton.setVisible(true);
+        acuteOButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerAcuteO, robot);
+                }
+                else{
+                    type(clipboard, upperAcuteO, robot);
+                }
+            }
+        });
+
+        acuteUButton.setBounds(300, 75, 100, 75);
+        frame.add(acuteUButton);
+        acuteUButton.setVisible(true);
+        acuteUButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerAcuteU, robot);
+                }
+                else{
+                    type(clipboard, upperAcuteU, robot);
+                }
+            }
+        });
+
+        invertedExclaimationMarkButton.setBounds(400, 0, 100, 75);
+        frame.add(invertedExclaimationMarkButton);
+        invertedExclaimationMarkButton.setVisible(true);
+        invertedExclaimationMarkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                type(clipboard, invertedExclaimationMark, robot);
+            }
+        });
+
+        invertedQuestionMarkButton.setBounds(400, 75, 100, 75);
+        frame.add(invertedQuestionMarkButton);
+        invertedExclaimationMarkButton.setVisible(true);
+        invertedQuestionMarkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                type(clipboard, invertedQuestionMark, robot);
+            }
+        });
+    }
+
+
+
+    public static void setup(JFrame frame){
+        frame.setSize(515, 185);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Spanish Characters");
+        frame.setLayout(null);
+        frame.setAlwaysOnTop(true);
+        frame.setFocusableWindowState(false);
+    }
+
+    public static void type(Clipboard clipboard, StringSelection letter, Robot robot){
+        clipboard.setContents(letter, letter);
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+    }
+}
