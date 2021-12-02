@@ -7,9 +7,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class Main extends JFrame{
-
     public static void main(String[] args) throws AWTException{
-        //Create strings formatted for clipboard;
+        //Create strings formatted for clipboard
         StringSelection lowerAcuteA = new StringSelection("á");
         StringSelection lowerAcuteE = new StringSelection("é");
         StringSelection lowerAcuteI = new StringSelection("í");
@@ -24,10 +23,12 @@ public class Main extends JFrame{
         StringSelection upperAcuteU = new StringSelection("Ú");
         StringSelection invertedQuestionMark = new StringSelection("¿");
         StringSelection invertedExclaimationMark = new StringSelection("¡");
+        StringSelection lowerUUmlaut = new StringSelection("ü");
+        StringSelection upperUUmlaut = new StringSelection("Ü");
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        Robot robot = new Robot();
         JFrame frame = new JFrame();
-		
+        Robot robot = new Robot();
+
         //Create buttons
         JButton capsButton = new JButton("CAPS");
         JButton acuteAButton = new JButton("á");
@@ -36,11 +37,23 @@ public class Main extends JFrame{
         JButton acuteOButton = new JButton("ó");
         JButton acuteUButton = new JButton("ú");
         JButton tildeNButton = new JButton("ñ");
+        JButton uUmulautButton = new JButton("ü");
         JButton invertedExclaimationMarkButton = new JButton("¡");
         JButton invertedQuestionMarkButton = new JButton("¿");
+        capsButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 24));
+        acuteAButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        acuteEButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        acuteIButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        acuteOButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        acuteUButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        tildeNButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        uUmulautButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        invertedExclaimationMarkButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+        invertedQuestionMarkButton.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 40));
+
         setup(frame);
 
-        capsButton.setBounds(0, 0, 100, 150);
+        capsButton.setBounds(0, 0, 100, 75);
         frame.add(capsButton);
         capsButton.setVisible(true);
         capsButton.addActionListener(new ActionListener() {
@@ -53,6 +66,7 @@ public class Main extends JFrame{
                     tildeNButton.setText("Ñ");
                     acuteOButton.setText("Ó");
                     acuteUButton.setText("Ú");
+                    uUmulautButton.setText("Ü");
                 }
                 else{
                     acuteAButton.setText("á");
@@ -61,6 +75,7 @@ public class Main extends JFrame{
                     tildeNButton.setText("ñ");
                     acuteOButton.setText("ó");
                     acuteUButton.setText("ú");
+                    uUmulautButton.setText("ü");
                 }
             }
         });
@@ -174,6 +189,21 @@ public class Main extends JFrame{
                 type(clipboard, invertedQuestionMark, robot);
             }
         });
+
+        uUmulautButton.setBounds(0, 75, 100, 75);
+        frame.add(uUmulautButton);
+        uUmulautButton.setVisible(true);
+        uUmulautButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(acuteAButton.getText().equals("á")){
+                    type(clipboard, lowerUUmlaut, robot);
+                }
+                else{
+                    type(clipboard, upperUUmlaut, robot);
+                }
+            }
+        });
     }
 
 
@@ -189,7 +219,7 @@ public class Main extends JFrame{
         frame.setFocusableWindowState(false);
     }
 
-    public static void type(Clipboard clipboard, StringSelection letter, Robot robot){
+    public static void type(Clipboard clipboard, StringSelection letter, Robot robot) {
         clipboard.setContents(letter, letter);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
